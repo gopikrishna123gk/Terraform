@@ -1,0 +1,36 @@
+Ubuntu
+
+  *) To install Terraform on Ubuntu, add the HashiCorp GPG key to your system
+       $ curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+  *) add the official HashiCorp Terraform Linux repository to apt
+       $ sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+  *) Then update apt and install Terraform
+       $ sudo apt-get update 
+       $ sudo apt-get install terraform
+  *) Once installed, verify the installation:
+       $ terraform -v
+
+Centos
+
+  *) To install Terraform on CentOS, install the yum-config-manager to manage your repositories
+        $ sudo yum install -y yum-utils
+  *) Use yum-config-manager to add the official HashiCorp Linux repository
+        $ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+  *) Then install Terraform
+        $ sudo yum -y install terraform
+  *) verify Terraform’s installation
+        $ terraform -v
+
+Terraform on Amazon Linux
+
+ *) install Terraform with curl command.
+       $ curl -O https://releases.hashicorp.com/terraform/0.12.2/terraform_0.12.2_linux_amd64.zip
+ *) Extract the downloaded terraform zip file
+       $ sudo unzip ./terraform_0.12.2_linux_amd64.zip -d /usr/local/bin
+         Archive :-  ./terraform_0.12.2_linux_amd64.zip
+         inflating :- /usr/local/bin/terraform
+ *) Verify Terraform Version
+       $ terraform -v
+
+
+
