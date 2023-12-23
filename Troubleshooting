@@ -1,0 +1,38 @@
+1) how to recover terraform state file was deleted by mistakenly but now the issue when we 
+   run the terraform init it creates the duplication environment how to resolve this?
+
+  *) option 1 is version control like Git
+  *) option 2 is amazon s3 bucket
+   if backup is not possible her then
+  *) option 3
+   1) Re-create the State File
+     Assuming you couldn't find a backup, and your infrastructure is still intact:
+    *) Identify Resources:-
+       $ terraform state list
+     Let's say your output is:
+      aws_instance.prod
+   *) Import Resources:-
+      $ terraform import aws_instance.prod i-0123456789abcdef0
+   *)  Refresh and Plan:-
+      $ terraform refresh
+      $ terraform plan
+   *)  Apply Changes:-
+      $ terraform apply
+2) To Handle Duplicate Environments
+
+   *) Remove .terraform Directory:-
+       $ rm -rf .terraform
+   *) Re-Initialize Terraform:-
+       $ terraform init
+   *) Check for Provider Versions:-
+      In your main.tf or provider configuration file, specify the version
+      provider "aws" {
+        version = "2.70.0" # Use your desired version
+        region  = "us-east-1"
+      }
+  *) Update Terraform:-
+    Ensure you are using an up-to-date version of Terraform
+       $ terraform version
+  *) Check for Environment Variables:-
+     Verify that there are no unexpected environment variables affecting Terraform
+       $ env | grep TF_
